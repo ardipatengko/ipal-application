@@ -1,24 +1,62 @@
-<table mat-table [dataSource]="ipalDataList" class="mat-elevation-z8">
-  <ng-container matColumnDef="bkmName">
-    <th mat-header-cell *matHeaderCellDef> BKM Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.bkmName}}</td>
-  </ng-container>
+<!-- <div id="content">
+  <table mat-table [dataSource]="ipalDataList" class="mat-elevation-z8">
+    <ng-container matColumnDef="bkmName">
+      <th mat-header-cell *matHeaderCellDef> BKM Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.bkmName}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="district">
-      <th mat-header-cell *matHeaderCellDef> District </th>
-      <td mat-cell *matCellDef="let element"> {{element.district}}</td>
-  </ng-container>
+    <ng-container matColumnDef="district">
+        <th mat-header-cell *matHeaderCellDef> District </th>
+        <td mat-cell *matCellDef="let element"> {{element.district}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="province">
-      <th mat-header-cell *matHeaderCellDef> Province </th>
-      <td mat-cell *matCellDef="let element"> {{element.province}}</td>
-  </ng-container>
+    <ng-container matColumnDef="province">
+        <th mat-header-cell *matHeaderCellDef> Province </th>
+        <td mat-cell *matCellDef="let element"> {{element.province}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef> Category </th>
-    <td mat-cell *matCellDef="let element"> {{element.category}}</td>
-  </ng-container>
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="ipalDataColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: ipalDataColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="ipalDataColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: ipalDataColumns;"></tr>
+  </table>
+</div> -->
+<div id="content">
+  <table mat-table [dataSource]="ipalDataList" multiTemplateDataRows
+    class="mat-elevation-z8">
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of ipalDataColumns">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}}</td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="ipalDataColumns.length">
+          <div class="example-element-detail"
+              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div class="example-element-position"> {{element.address}} </div>
+              <!-- <div class="example-element-symbol"> {{element.symbol}} </div>
+              <div class="example-element-name"> {{element.name}} </div>
+              <div class="example-element-weight"> {{element.weight}} </div> -->
+            </div>
+            <div class="example-element-description">
+              {{element.description}}
+              <span class="example-element-description-attribution"> -- Wikipedia </span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="ipalDataColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: ipalDataColumns;" 
+      class="example-element-row" 
+      [class.example-expanded-row]="expandedElement === element" 
+      (click)="expandedElement = element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+</div>

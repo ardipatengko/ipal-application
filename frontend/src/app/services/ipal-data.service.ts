@@ -13,7 +13,15 @@ export class IpalDataService {
     private http: Http
   ) { }
 
-  getIpalData():Observable<any>{
+  getIpalData(): Observable<any>{
     return this.http.get(Utils.getConnectionUrl().concat("ipalData"));
+  }
+
+  getIpalDataById(idIpalData): Observable<any>{
+    return this.http.get(Utils.getConnectionUrl().concat("ipalData/".concat(idIpalData)));
+  }
+
+  getIpaldataByCategoryId(idCategory): Observable<any>{
+    return this.http.get(Utils.getConnectionUrl().concat("ipalData/category/").concat(idCategory));
   }
 }

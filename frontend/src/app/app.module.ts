@@ -20,11 +20,21 @@ import { HomeComponent } from './home/home.component';
 import { HttpModule } from '@angular/http';
 import { ContentTableDetailComponent } from './content-table-detail/content-table-detail.component';
 import {MatCardModule, MatCard} from '@angular/material/card';
+import { AgmCoreModule } from '@agm/core';
+import {MatListModule} from '@angular/material/list';
+import {MatTreeModule} from '@angular/material/tree';
+import { ContentListComponent } from './content-list/content-list.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'ipalDetail', component: ContentTableDetailComponent}
+  { path: '', component: HomeComponent, 
+    children : [
+      { path: 'home', component: ContentComponent},
+      { path: 'listCategory', component: ContentListComponent},
+      { path: 'listCategory/:idIpalCategory', component: ContentTableComponent},
+      { path: 'ipalDetail', component: ContentTableDetailComponent}
+    ]
+  },
+  { path: 'login', component: LoginComponent}
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);
@@ -37,7 +47,8 @@ export const routing = RouterModule.forRoot(appRoutes);
     ContentTableComponent,
     LoginComponent,
     HomeComponent,
-    ContentTableDetailComponent
+    ContentTableDetailComponent,
+    ContentListComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +63,12 @@ export const routing = RouterModule.forRoot(appRoutes);
     routing,
     BrowserAnimationsModule,
     HttpModule,
-    MatCardModule
+    MatCardModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAb9yHaBxEeqBnNfumCo0u_K5y8BR9dWvw'
+    }),
+    MatListModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

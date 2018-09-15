@@ -11,6 +11,7 @@ var baseUrl = config.baseUrl;
 //controller
 global.__basedir = __dirname;
 var ipalData = require('./app/controller/ipalDataController');
+var ipalCategory = require('./app/controller/ipalCategoryController');
 //end controller
 
 var port = process.env.port || 8081;
@@ -27,6 +28,10 @@ apiRoutes.get('/', function(req, res){
 });
 
 apiRoutes.get('/ipalData', ipalData.getAllIpalData);
+apiRoutes.get('/ipalData/:idIpalData', ipalData.getIpalDataById);
+apiRoutes.get('/ipalData/category/:idCategory', ipalData.getIpalDataByCategoryId);
+
+apiRoutes.get('/ipalCategory', ipalCategory.getAllIpalCategory);
 
 app.listen(port);
 console.log('Application run at ' + baseUrl + port);

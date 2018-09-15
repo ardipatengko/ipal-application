@@ -11,8 +11,8 @@
 }
 
 #content {
-    border: 1px;
-    border-style: solid;
+    border: 1px solid #BFBFBF;
+    box-shadow: 3px 3px 3px #aaaaaa;
     border-color: rgb(0, 0, 0);
     margin-left: 10px;
     margin-right: 10px;
