@@ -25,7 +25,7 @@ export class ContentListComponent implements OnInit {
     this.ipalCategoryService.getIpalCategory().subscribe(
       ipalCategory => {
         this.ipalCategoryList = ipalCategory.json().data;
-        console.log(this.ipalCategoryList[0]);
+        // console.log(this.ipalCategoryList[0]);
       }
     );
   }

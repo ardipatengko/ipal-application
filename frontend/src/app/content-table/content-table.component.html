@@ -26,7 +26,7 @@
 </div> -->
 <div id="content">
   <table mat-table [dataSource]="ipalDataList" multiTemplateDataRows
-    class="mat-elevation-z8">
+    class="mat-elevation-z8" align="center">
     <ng-container matColumnDef="{{column}}" *ngFor="let column of ipalDataColumns">
       <th mat-header-cell *matHeaderCellDef> {{column}} </th>
       <td mat-cell *matCellDef="let element"> {{element[column]}}</td>
@@ -37,15 +37,18 @@
         <td mat-cell *matCellDef="let element" [attr.colspan]="ipalDataColumns.length">
           <div class="example-element-detail"
               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <!-- <agm-map [latitude]="element.latitude" [longitude]="element.longitude">
+                <agm-marker [latitude]="element.latitude" [longitude]="element.longitude"></agm-marker>
+              </agm-map> -->
             <div class="example-element-diagram">
-              <div class="example-element-position"> {{element.address}} </div>
-              <!-- <div class="example-element-symbol"> {{element.symbol}} </div>
-              <div class="example-element-name"> {{element.name}} </div>
+              <!-- <div class="example-element-position"> {{element.address}} </div> -->
+              <div class="example-element-symbol"> {{element.ksmName}} </div>
+              <!-- <div class="example-element-name"> {{element.name}} </div>
               <div class="example-element-weight"> {{element.weight}} </div> -->
             </div>
             <div class="example-element-description">
-              {{element.description}}
-              <span class="example-element-description-attribution"> -- Wikipedia </span>
+              {{element.address}}
+              <span class="example-element-description-attribution"> --  Lihat detail </span>
             </div>
           </div>
         </td>

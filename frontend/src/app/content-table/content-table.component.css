@@ -12,7 +12,7 @@ table tr:hover{
     background: #f5f5f5;
 } */ 
 table {
-    width: 50%;
+    width: 100%;
   }
   
   tr.example-detail-row {
@@ -58,3 +58,8 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
+
+  agm-map{
+    height: 200px;
+    width: 300px;
+}

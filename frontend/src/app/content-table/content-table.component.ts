@@ -17,11 +17,13 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   ]
 })
 export class ContentTableComponent implements OnInit {
+  latitude: number = 51.678418;
+  longitude: number = 7.809007;
 
   private sub: any;
   private idCategory: Number;
 
-  ipalDataColumns: string[] = ['bkmName', 'district', 'province', 'category'];
+  ipalDataColumns: string[] = ['address', 'ksmName', 'name'];
   ipalDataList;
   ipalCategoryList;
 
@@ -52,7 +54,7 @@ export class ContentTableComponent implements OnInit {
     this.ipalDataService.getIpaldataByCategoryId(idCategory).subscribe(
       ipalData => {
         this.ipalDataList = ipalData.json().data;
-        console.log(this.ipalDataList);
+        // console.log(this.ipalDataList);
       }
     );
   }
