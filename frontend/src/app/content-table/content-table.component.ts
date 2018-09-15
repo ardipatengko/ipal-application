@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IpalDataService } from '../services/ipal-data.service';
+import { IpalData } from '../models/ipal-data-model';
+import { Observable } from 'rxjs';
 
 export interface PeriodicElement{
   name: string;
@@ -7,23 +10,30 @@ export interface PeriodicElement{
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'}
-];
-
 @Component({
   selector: 'app-content-table',
   templateUrl: './content-table.component.html',
   styleUrls: ['./content-table.component.css']
 })
 export class ContentTableComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  ipalDataColumns: string[] = ['bkmName', 'district', 'province', 'category'];
+  ipalDataList;
+
+  constructor(
+    private ipalDataService: IpalDataService
+  ) { }
 
   ngOnInit() {
+    this.getIpalData();
+  }
+
+  getIpalData(){
+    this.ipalDataService.getIpalData().subscribe(
+      ipalData => {
+        this.ipalDataList = ipalData.json().data;
+        // console.log(this.ipalDataList[0]);
+      }
+    );
   }
 
 }
