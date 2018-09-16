@@ -13,7 +13,7 @@ import { ContentComponent } from './content/content.component';
 import {MatTableModule} from '@angular/material/table';
 import { ContentTableComponent, DialogContentDialog } from './content-table/content-table.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
@@ -25,6 +25,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import { ContentListComponent } from './content-list/content-list.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { AuthGuard } from './guard/auth.guard';
+import { IpalDataListComponent } from './admin/ipal-data-list/ipal-data-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, 
@@ -35,7 +38,12 @@ const appRoutes: Routes = [
       { path: 'ipalDetail', component: ContentTableDetailComponent}
     ]
   },
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'ipalList', component: IpalDataListComponent, canActivate: [AuthGuard]}
+    ]
+  }
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);
@@ -50,7 +58,9 @@ export const routing = RouterModule.forRoot(appRoutes);
     HomeComponent,
     ContentTableDetailComponent,
     ContentListComponent,
-    DialogContentDialog
+    DialogContentDialog,
+    HomeAdminComponent,
+    IpalDataListComponent
   ],
   entryComponents: [DialogContentDialog],
   imports: [
@@ -72,7 +82,8 @@ export const routing = RouterModule.forRoot(appRoutes);
     }),
     MatListModule,
     MatTreeModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,3 +8,6 @@ exports.con = mysql.createConnection({
 });
 
 exports.baseUrl = 'http://localhost:';
+
+// change later to domain name
+exports.allowAccesOrigin = 'http://localhost:4200';

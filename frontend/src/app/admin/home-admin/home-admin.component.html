@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" style="background-color: #1a5963">
+  <mat-toolbar-row>
+    <button mat-button routerLink="/admin"> 
+      <mat-icon class="example-icon">account_circle</mat-icon> &nbsp;
+      <span>Home Admin</span>
+    </button>
+    <button mat-button routerLink="/admin/ipalList"> 
+      <mat-icon class="example-icon">description</mat-icon> &nbsp;
+      <span>Ipal Data</span>
+    </button>
+    <button mat-button (click)="logout()" style="float: right;"> 
+      <mat-icon class="example-icon">undo</mat-icon> &nbsp;
+      <span>Logout</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div id="body"> 
+  <h2> Welcome to admin page </h2>
+  <router-outlet></router-outlet>
+</div>
