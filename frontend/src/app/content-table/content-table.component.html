@@ -48,7 +48,8 @@
             </div>
             <div class="example-element-description">
               {{element.address}}
-              <span class="example-element-description-attribution"> --  Lihat detail </span>
+              <!-- <span class="example-element-description-attribution"> --  Lihat detail </span> -->
+              <button mat-button (click)="openDialog(element)">Lihat detail</button>
             </div>
           </div>
         </td>

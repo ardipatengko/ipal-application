@@ -11,7 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { ContentComponent } from './content/content.component';
 import {MatTableModule} from '@angular/material/table';
-import { ContentTableComponent } from './content-table/content-table.component';
+import { ContentTableComponent, DialogContentDialog } from './content-table/content-table.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -24,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import { ContentListComponent } from './content-list/content-list.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, 
@@ -48,8 +49,10 @@ export const routing = RouterModule.forRoot(appRoutes);
     LoginComponent,
     HomeComponent,
     ContentTableDetailComponent,
-    ContentListComponent
+    ContentListComponent,
+    DialogContentDialog
   ],
+  entryComponents: [DialogContentDialog],
   imports: [
     BrowserModule,
     MatToolbarModule,
@@ -68,7 +71,8 @@ export const routing = RouterModule.forRoot(appRoutes);
       apiKey: 'AIzaSyAb9yHaBxEeqBnNfumCo0u_K5y8BR9dWvw'
     }),
     MatListModule,
-    MatTreeModule
+    MatTreeModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

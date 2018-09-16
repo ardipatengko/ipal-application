@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { IpalDataService } from '../services/ipal-data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IpalCategoryService } from '../services/ipal-category.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-content-table',
@@ -31,7 +32,8 @@ export class ContentTableComponent implements OnInit {
     private ipalDataService: IpalDataService,
     private ipalCategoryService: IpalCategoryService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -63,4 +65,30 @@ export class ContentTableComponent implements OnInit {
     this.getIpalDataByCategory(idCategory);
   }
 
+  openDialog(item){
+    const dialogRef = this.dialog.open(DialogContentDialog, {
+      data: item
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog result: %{result}')
+    // })
+  }
+
+}
+
+@Component({
+  selector: 'dialog-content-dialog',
+  templateUrl: 'dialog-content-dialog.html',
+  styleUrls: ['./content-table.component.css'],
+})
+export class DialogContentDialog implements OnInit{
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ){}
+
+  ngOnInit(){
+    console.log(this.data);
+  }
 }
