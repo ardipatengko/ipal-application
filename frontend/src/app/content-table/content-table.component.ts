@@ -18,8 +18,8 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
   ]
 })
 export class ContentTableComponent implements OnInit {
-  latitude: number = 51.678418;
-  longitude: number = 7.809007;
+  latitude: number = -6.21462; //Jakarta
+  longitude: number = 106.84513; //Jakarta
 
   private sub: any;
   private idCategory: Number;
@@ -56,7 +56,7 @@ export class ContentTableComponent implements OnInit {
     this.ipalDataService.getIpaldataByCategoryId(idCategory).subscribe(
       ipalData => {
         this.ipalDataList = ipalData.json().data;
-        // console.log(this.ipalDataList);
+        console.log(this.ipalDataList);
       }
     );
   }

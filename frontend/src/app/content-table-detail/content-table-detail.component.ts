@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IpalDataService } from '../services/ipal-data.service';
 
 declare var ol: any;
 
@@ -10,26 +11,39 @@ declare var ol: any;
 
 export class ContentTableDetailComponent implements OnInit {
 
-  latitude: number = 51.678418;
-  longitude: number = 7.809007;
+  latitude: number = -6.21462; //Jakarta
+  longitude: number = 106.84513; //Jakarta
+
+  ipalDataList;
   
   map: any;
 
-  constructor() { }
+  constructor(
+    private ipalDataService: IpalDataService
+  ) { }
 
   ngOnInit() {
-    this.map = new ol.Map({
-      target: 'map',
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM()
-        })
-      ],
-      view: new ol.View({
-        center: ol.proj.fromLonLat([this.longitude, this.latitude]),
-        zoom: 8
-      })
-    });
+    // this.map = new ol.Map({
+    //   target: 'map',
+    //   layers: [
+    //     new ol.layer.Tile({
+    //       source: new ol.source.OSM()
+    //     })
+    //   ],
+    //   view: new ol.View({
+    //     center: ol.proj.fromLonLat([this.longitude, this.latitude]),
+    //     zoom: 8
+    //   })
+    // });
+    this.getIpalDataAll();
   }
 
+  getIpalDataAll(){
+    this.ipalDataService.getIpalData().subscribe(
+      ipalData => {
+        this.ipalDataList = ipalData.json().data;
+        console.log(this.ipalDataList);
+      }
+    );
+  }
 }

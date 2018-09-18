@@ -35,7 +35,8 @@ const appRoutes: Routes = [
       { path: 'home', component: ContentComponent},
       { path: 'listCategory', component: ContentListComponent},
       { path: 'listCategory/:idIpalCategory', component: ContentTableComponent},
-      { path: 'ipalDetail', component: ContentTableDetailComponent}
+      { path: 'ipalDetail', component: ContentTableDetailComponent},
+      { path: 'allMap', component: ContentTableDetailComponent}
     ]
   },
   { path: 'login', component: LoginComponent},

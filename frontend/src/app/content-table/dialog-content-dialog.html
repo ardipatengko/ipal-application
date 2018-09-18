@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>Maps Detail : {{data.name}}</h2>
 <mat-dialog-content class="mat-typography">
-    <!-- <agm-map [latitude]="data.latitude" [longitude]="data.longitude">
-                <agm-marker [latitude]="data.latitude" [longitude]="data.longitude"></agm-marker>
-              </agm-map> -->
+    <agm-map [latitude]="data.latitude" [longitude]="data.longitude">
+      <agm-marker [latitude]="data.latitude" [longitude]="data.longitude"></agm-marker>
+    </agm-map>
   <h3>{{data.ksmName}}</h3>
   <p>{{data.address}}</p>
 </mat-dialog-content>
