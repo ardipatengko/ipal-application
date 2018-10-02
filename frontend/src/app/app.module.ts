@@ -28,6 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { AuthGuard } from './guard/auth.guard';
 import { IpalDataListComponent } from './admin/ipal-data-list/ipal-data-list.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, 
@@ -84,7 +85,8 @@ export const routing = RouterModule.forRoot(appRoutes);
     MatListModule,
     MatTreeModule,
     MatDialogModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

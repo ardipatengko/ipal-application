@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IpalDataService } from '../services/ipal-data.service';
+import { IpalCategoryService } from '../services/ipal-category.service';
 
 declare var ol: any;
 
@@ -15,11 +16,13 @@ export class ContentTableDetailComponent implements OnInit {
   longitude: number = 106.84513; //Jakarta
 
   ipalDataList;
+  ipalCategoryList;
   
   map: any;
 
   constructor(
-    private ipalDataService: IpalDataService
+    private ipalDataService: IpalDataService,
+    private ipalCategoryService: IpalCategoryService
   ) { }
 
   ngOnInit() {
@@ -36,6 +39,15 @@ export class ContentTableDetailComponent implements OnInit {
     //   })
     // });
     this.getIpalDataAll();
+    this.getIpalCategory();
+  }
+
+  getIpalCategory(){
+    this.ipalCategoryService.getIpalCategory().subscribe(
+      ipalCategory => {
+        this.ipalCategoryList = ipalCategory.json().data;
+      }
+    );
   }
 
   getIpalDataAll(){
@@ -45,5 +57,13 @@ export class ContentTableDetailComponent implements OnInit {
         console.log(this.ipalDataList);
       }
     );
+  }
+
+  onMouseOver(infoWindow, gm){
+    if(gm.lastOpen != null){
+      gm.lastOpen.close();
+    }
+    gm.lastOpen = infoWindow;
+    infoWindow.open();
   }
 }
