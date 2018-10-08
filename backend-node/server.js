@@ -32,6 +32,8 @@ apiRoutes.get('/', function(req, res){
 apiRoutes.get('/ipalData', ipalData.getAllIpalData);
 apiRoutes.get('/ipalData/:idIpalData', ipalData.getIpalDataById);
 apiRoutes.get('/ipalData/category/:idCategory', ipalData.getIpalDataByCategoryId);
+apiRoutes.post('/ipalData', ipalData.insertIpalData);
+apiRoutes.delete('/ipalData', ipalData.deleteIpalData);
 
 apiRoutes.get('/ipalCategory', ipalCategory.getAllIpalCategory);
 
