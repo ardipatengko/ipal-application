@@ -1,9 +1,7 @@
 node_modules
 bower.json 
 .idea/ 
-npm-debug.log 
-package-lock.json 
-package.json 
+npm-debug.log
 dist 
 .vscode
 frontend/node_modules

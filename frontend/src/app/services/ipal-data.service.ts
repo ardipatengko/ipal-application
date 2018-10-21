@@ -24,4 +24,11 @@ export class IpalDataService {
   getIpaldataByCategoryId(idCategory): Observable<any>{
     return this.http.get(Utils.getConnectionUrl().concat("ipalData/category/").concat(idCategory));
   }
+
+  insertIpalData(ipalData): Observable<any>{
+    let body = JSON.stringify(ipalData);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    console.log(body);
+    return this.http.post(Utils.getConnectionUrl().concat("ipalData"), body);
+  }
 }

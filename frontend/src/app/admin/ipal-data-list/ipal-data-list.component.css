@@ -1,0 +1,7 @@
+table {
+    width: 100%;
+  }
+
+  .trow:hover {
+    background-color:rgba(209, 206, 206, 0.87);
+  }

@@ -17,3 +17,4 @@ export class IpalData {
     soul: Number;
     photo: String;
 }
+

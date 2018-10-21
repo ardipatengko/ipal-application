@@ -1,0 +1,83 @@
+<div id="content">
+  <h2> Input Data Ipal </h2>
+  <div class="example-container">
+    <form [formGroup]="form" 
+      (ngSubmit)="onSubmit(form.value)">
+      <p>
+        <mat-form-field>
+          <mat-select placeholder="Kategori Ipal" formControlName="idCategory" id="idCategory" name="idCategory" size="30">
+            <mat-option *ngFor="let category of ipalCategoryList" value="{{category.idCategory}}">{{category.category}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Nama" formControlName="name" id="name" name="name" size="30"/>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Alamat" formControlName="address" id="address" name="address" size="30"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Dibangun Oleh" formControlName="buildBy" id="buildBy" name="buildBy" size="30"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-select placeholder="Tahun Pembangunan" formControlName="developmentYear" id="developmentYear" name="developmentYear" size="30">
+            <mat-option value="2018">2018</mat-option>
+            <mat-option value="2019">2019</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Sumber Dana" formControlName="sourceOfFund" id="sourceOfFund" name="sourceOfFund" size="30"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Teknologi" formControlName="technology" id="technology" name="technology" size="30"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Ukuran" formControlName="size" id="size" name="size" size="30"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Kapasitas" formControlName="capacity" id="capacity" name="capacity" size="30"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input type="number" matInput placeholder="Jumlah Sambungan Rumah" formControlName="connectionNumber" id="connectionNumber" name="connectionNumber" size="30" />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Pengelola" formControlName="manager" id="manager" name="manager" size="30"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Koordinat X" formControlName="longitude" id="longitude" name="longitude" size="30" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Koordinat Y" formControlName="latitude" id="latitude" name="latitude" size="30" />
+        </mat-form-field>
+      </p>
+      <p>
+        <input type="file" id="photo" (change)="upload($event)" #fileInput multiple accept="image/jgp, image/jpeg, image/png">
+        <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear file</button>
+      </p>
+      <p>
+        <button type="submit" mat-raised-button color="primary"> <mat-icon class="example-icon">save</mat-icon> Save </button>
+      </p>
+    </form>
+  </div>
+</div>

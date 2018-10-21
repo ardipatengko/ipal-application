@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IpalDataService } from '../../services/ipal-data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IpalCategoryService } from '../../services/ipal-category.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource, MatPaginator} from '@angular/material';
 
 @Component({
   selector: 'app-ipal-data-list',
@@ -12,8 +12,10 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class IpalDataListComponent implements OnInit {
 
-  ipalDataColumns: string[] = ['address', 'ksmName', 'name'];
+  ipalDataColumns: string[] = ['idIpalData', 'name', 'address', 'longitude', 'latitude', 'action'];
   ipalDataList = new MatTableDataSource();
+
+  @ViewChild(MatPaginator) paginator : MatPaginator;
 
   constructor(
     private ipalDataService: IpalDataService
@@ -27,11 +29,20 @@ export class IpalDataListComponent implements OnInit {
     this.ipalDataService.getIpalData().subscribe(
       ipalData => {
         this.ipalDataList = ipalData.json().data;
+        this.ipalDataList.paginator = this.paginator;
       }
     );
   }
 
   applyFilter(filterValue: String){
     this.ipalDataList.filter = filterValue.trim().toLowerCase();
+  }
+
+  delete(ipalData){
+    console.log(ipalData);
+  }
+
+  viewDetail(ipalData){
+    console.log(ipalData);
   }
 }

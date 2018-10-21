@@ -29,6 +29,10 @@ import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { AuthGuard } from './guard/auth.guard';
 import { IpalDataListComponent } from './admin/ipal-data-list/ipal-data-list.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatPaginatorModule } from '@angular/material';
+import { IpalDataFormComponent } from './admin/ipal-data-form/ipal-data-form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, 
@@ -43,7 +47,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'ipalList', component: IpalDataListComponent, canActivate: [AuthGuard]}
+      { path: 'ipalList', component: IpalDataListComponent, canActivate: [AuthGuard]},
+      { path: 'ipalForm', component: IpalDataFormComponent, canActivate: [AuthGuard]}
     ]
   }
 ]
@@ -62,7 +67,8 @@ export const routing = RouterModule.forRoot(appRoutes);
     ContentListComponent,
     DialogContentDialog,
     HomeAdminComponent,
-    IpalDataListComponent
+    IpalDataListComponent,
+    IpalDataFormComponent
   ],
   entryComponents: [DialogContentDialog],
   imports: [
@@ -86,7 +92,10 @@ export const routing = RouterModule.forRoot(appRoutes);
     MatTreeModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

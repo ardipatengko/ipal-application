@@ -18,12 +18,6 @@
       <button mat-button>SHARE</button>
     </mat-card-actions>
   </mat-card> -->
-  <mat-list>
-    <mat-list-item *ngFor="let category of ipalCategoryList">
-      {{category.category}} &nbsp; <img src="{{category.pin_image}}" />
-      <mat-divider></mat-divider>
-    </mat-list-item>
-  </mat-list>
   <agm-map #gm [zoom]="12" [latitude]="latitude" [longitude]="longitude">
     <agm-marker *ngFor="let data of ipalDataList; let i = index">
       <agm-marker [latitude]="data.latitude" [longitude]="data.longitude"
@@ -31,12 +25,18 @@
         [iconUrl]="data.pin_image">
         <agm-info-window [disableAutoPan]="false" #infoWindow>
           <div>
-            {{data.address}}
+            <b>{{data.category}}</b> : {{data.address}}
           </div>
         </agm-info-window>
       </agm-marker>
     </agm-marker>
   </agm-map>
+  <!-- <mat-list>
+    <mat-list-item *ngFor="let category of ipalCategoryList">
+      {{category.category}} &nbsp; <img src="{{category.pin_image}}" />
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list> -->
 </div>
 <!-- <div id="map" class="map">
 
