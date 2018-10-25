@@ -81,7 +81,6 @@ export class IpalDataFormComponent implements OnInit {
   }
 
   onSubmit(formValue){
-    console.log(formValue);
     this.ipalDataService.insertIpalData(formValue).subscribe(
       ipalData => {
         console.log(ipalData);
@@ -92,7 +91,7 @@ export class IpalDataFormComponent implements OnInit {
   getIpalCategoryList(){
     this.ipalCategoryService.getIpalCategory().subscribe(
       ipalCategory => {
-        this.ipalCategoryList = ipalCategory.json().data;
+        this.ipalCategoryList = ipalCategory.data;
       }
     );
   }

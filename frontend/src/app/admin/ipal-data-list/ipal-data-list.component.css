@@ -5,3 +5,13 @@ table {
   .trow:hover {
     background-color:rgba(209, 206, 206, 0.87);
   }
+
+  agm-map{
+    height: 250px;
+    width: 100%;
+}
+
+mat-dialog-content{
+  width: 900px;
+  height: 2500px;;
+}

@@ -45,7 +45,7 @@ export class ContentTableDetailComponent implements OnInit {
   getIpalCategory(){
     this.ipalCategoryService.getIpalCategory().subscribe(
       ipalCategory => {
-        this.ipalCategoryList = ipalCategory.json().data;
+        this.ipalCategoryList = ipalCategory.data;
       }
     );
   }
@@ -53,7 +53,7 @@ export class ContentTableDetailComponent implements OnInit {
   getIpalDataAll(){
     this.ipalDataService.getIpalData().subscribe(
       ipalData => {
-        this.ipalDataList = ipalData.json().data;
+        this.ipalDataList = ipalData.data;
         console.log(this.ipalDataList);
       }
     );

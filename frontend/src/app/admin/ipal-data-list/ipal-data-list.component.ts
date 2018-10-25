@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { IpalDataService } from '../../services/ipal-data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IpalCategoryService } from '../../services/ipal-category.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-ipal-data-list',
@@ -18,7 +19,8 @@ export class IpalDataListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator : MatPaginator;
 
   constructor(
-    private ipalDataService: IpalDataService
+    private ipalDataService: IpalDataService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class IpalDataListComponent implements OnInit {
   getIpalDataList(){
     this.ipalDataService.getIpalData().subscribe(
       ipalData => {
-        this.ipalDataList = ipalData.json().data;
+        this.ipalDataList = ipalData.data;
         this.ipalDataList.paginator = this.paginator;
       }
     );
@@ -40,9 +42,32 @@ export class IpalDataListComponent implements OnInit {
 
   delete(ipalData){
     console.log(ipalData);
+    this.ipalDataService.deleteIpalData(ipalData.idIpalData).subscribe(
+      ipalData => {
+        this.getIpalDataList();
+      }
+    );
   }
 
   viewDetail(ipalData){
-    console.log(ipalData);
+    const dialogRef = this.dialog.open(DialogContentAdminDialog, {
+      data: ipalData
+    });
+  }
+}
+
+@Component({
+  selector: 'dialog-content-admin-dialog',
+  templateUrl: './dialog-content-admin-dialog.html',
+  styleUrls: ['./ipal-data-list.component.css']
+})
+export class DialogContentAdminDialog implements OnInit{
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ){}
+
+  ngOnInit(){
+    console.log(this.data);
   }
 }

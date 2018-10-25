@@ -27,12 +27,13 @@ import { ContentListComponent } from './content-list/content-list.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { AuthGuard } from './guard/auth.guard';
-import { IpalDataListComponent } from './admin/ipal-data-list/ipal-data-list.component';
+import { IpalDataListComponent, DialogContentAdminDialog } from './admin/ipal-data-list/ipal-data-list.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material';
 import { IpalDataFormComponent } from './admin/ipal-data-form/ipal-data-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, 
@@ -66,11 +67,14 @@ export const routing = RouterModule.forRoot(appRoutes);
     ContentTableDetailComponent,
     ContentListComponent,
     DialogContentDialog,
+    DialogContentAdminDialog,
     HomeAdminComponent,
     IpalDataListComponent,
-    IpalDataFormComponent
+    IpalDataFormComponent,
   ],
-  entryComponents: [DialogContentDialog],
+  entryComponents: [
+    DialogContentDialog, 
+    DialogContentAdminDialog],
   imports: [
     BrowserModule,
     MatToolbarModule,
@@ -95,7 +99,8 @@ export const routing = RouterModule.forRoot(appRoutes);
     MatDividerModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

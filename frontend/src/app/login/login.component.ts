@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     let user;
     this.authenticationService.authenticate(loginData.username, loginData.password)
     .subscribe(response => {
-      user = response.json().data[0];
+      user = response.data[0];
       localStorage.setItem('currentUser', JSON.stringify(user));
       if(user){
         this.router.navigate(['/admin']);

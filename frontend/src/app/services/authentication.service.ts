@@ -3,6 +3,13 @@ import { Utils } from './../utils/util-module';
 import { Http, URLSearchParams } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type' : 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +17,12 @@ import { Observable } from "rxjs";
 export class AuthenticationService {
 
   constructor(
-    private http: Http
+    private http: Http,
+    private httpNew: HttpClient
   ) { }
 
-  authenticate(username, password){
-    return this.http.get(Utils.getConnectionUrl().concat("authenticate"), {
+  authenticate(username, password): Observable<any>{
+    return this.httpNew.get(Utils.getConnectionUrl().concat("authenticate"), {
       params: {
         username: username,
         password: password

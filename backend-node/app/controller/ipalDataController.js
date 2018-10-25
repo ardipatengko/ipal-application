@@ -104,31 +104,35 @@ module.exports = {
         var manager = req.body.manager;
         var longitude = req.body.longitude;
         var latitude = req.body.latitude;
-        console.log(req.body.photo);
-        var photoBody = req.body.photo.value;
 
-        
+        var photo;
+        if(req.body.photo != null){
+            var photoBody = req.body.photo.value;
 
         // Photo section
         var photoArr = [];
-        for (let index = 0; index < photoBody.length; index++) {
-            const element = photoBody[index];
+            for (let index = 0; index < photoBody.length; index++) {
+                const element = photoBody[index];
 
-            //convert byte to image
-            var base64Data = element.value;
-            var dirrPath = config.root;
-            var imageName = element.fileName;
-            var imageLocation = dirrPath + imageName;
-            var buff = new Buffer(base64Data, 'base64');
+                //convert byte to image
+                var base64Data = element.value;
+                var dirrPath = config.root;
+                var imageName = element.fileName;
+                var imageLocation = dirrPath + imageName;
+                var buff = new Buffer(base64Data, 'base64');
 
-            fs.writeFile(imageLocation, buff, (err) => {
-                if (err) throw err;
-                console.log('Image successfully uploaded to ' + imageLocation);
-            });
+                fs.writeFile(imageLocation, buff, (err) => {
+                    if (err) throw err;
+                    console.log('Image successfully uploaded to ' + imageLocation);
+                });
 
-            photoArr.push(element.fileName);
+                photoArr.push(element.fileName);
+            }
+            var photo = photoArr.join(';');
+        }else{
+            photo = "";
         }
-        var photo = photoArr.join(';');
+        
 
         var sql = "INSERT INTO ipal_data (idCategory, name, address, build_by, development_year, source_of_fund, technology, size, capacity, connection_number, manager, longitude, latitude, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         dbConnection.query(sql, [ idCategory, name, address, buildBy, developmentYear, sourceOfFund, technology, size, capacity, connectionNumber, manager, longitude, latitude, photo ], function(err, result , fields){
@@ -141,7 +145,7 @@ module.exports = {
     },
     deleteIpalData: function(req, res){
         // // Website you wish to allow to connect
-        // res.setHeader('Access-Control-Allow-Origin', config.allowAccesOrigin);
+        // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
         // // Request methods you wish to allow
         // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -153,7 +157,8 @@ module.exports = {
         // // to the API (e.g. in case you use sessions)
         // res.setHeader('Access-Control-Allow-Credentials', true);
         
-        var idIpalData = req.body.idIpalData;
+        var idIpalData = req.params.idIpalData;
+        console.log(idIpalData);
         var sql = "DELETE FROM ipal_data WHERE idIpalData=?";
         var params = [ idIpalData ];
         dbConnection.query(sql, [ params ], function(err, result, fields){

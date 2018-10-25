@@ -24,7 +24,7 @@ export class ContentTableComponent implements OnInit {
   private sub: any;
   private idCategory: Number;
 
-  ipalDataColumns: string[] = ['address', 'ksmName', 'name'];
+  ipalDataColumns: string[] = ['idIpalData', 'name', 'address', 'longitude', 'latitude'];
   ipalDataList;
   ipalCategoryList;
 
@@ -55,7 +55,7 @@ export class ContentTableComponent implements OnInit {
   getIpalDataByCategory(idCategory){
     this.ipalDataService.getIpaldataByCategoryId(idCategory).subscribe(
       ipalData => {
-        this.ipalDataList = ipalData.json().data;
+        this.ipalDataList = ipalData.data;
         console.log(this.ipalDataList);
       }
     );

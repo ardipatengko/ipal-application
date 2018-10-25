@@ -9,10 +9,12 @@
     "debug": "node --inspect server.js"
   },
   "author": "Ardi Pratama Patengko",
-  "author-email" : "ardipatengko@gmail.com",
+  "author-email": "ardipatengko@gmail.com",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "connect": "^3.6.6",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.1",
