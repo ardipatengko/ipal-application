@@ -26,3 +26,8 @@ mat-form-field{
 h2{
     text-align: center;
 }
+
+mat-dialog-content{
+    width: 200px;
+    height: 50px;;
+  }

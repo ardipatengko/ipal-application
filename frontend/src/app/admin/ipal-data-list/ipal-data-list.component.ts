@@ -20,7 +20,8 @@ export class IpalDataListComponent implements OnInit {
 
   constructor(
     private ipalDataService: IpalDataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -54,6 +55,10 @@ export class IpalDataListComponent implements OnInit {
       data: ipalData
     });
   }
+
+  edit(ipalData){
+    this.router.navigate([ipalData.idIpaldata]);
+ }
 }
 
 @Component({

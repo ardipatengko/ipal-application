@@ -45,4 +45,9 @@ export class IpalDataService {
     // return this.http.delete(Utils.getConnectionUrl().concat("ipalData/").concat(idIpaldata));
     return this.httpNew.delete(Utils.getConnectionUrl().concat("ipalData/").concat(idIpaldata), httpOptions);
   }
+
+  updateIpalData(idIpaldata, ipalData): Observable<any>{
+    let body = JSON.stringify(ipalData);
+    return this.httpNew.put(Utils.getConnectionUrl().concat("ipalData/").concat(idIpaldata), body, httpOptions);
+  }
 }

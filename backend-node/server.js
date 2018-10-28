@@ -61,6 +61,7 @@ apiRoutes.get('/ipalData/:idIpalData', ipalData.getIpalDataById);
 apiRoutes.get('/ipalData/category/:idCategory', ipalData.getIpalDataByCategoryId);
 apiRoutes.post('/ipalData', ipalData.insertIpalData);
 apiRoutes.delete('/ipalData/:idIpalData', ipalData.deleteIpalData);
+apiRoutes.put('/ipalData/:idIpalData', ipalData.updateIpalData);
 
 apiRoutes.get('/ipalCategory', ipalCategory.getAllIpalCategory);
 

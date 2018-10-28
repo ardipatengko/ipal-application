@@ -30,7 +30,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { IpalDataListComponent, DialogContentAdminDialog } from './admin/ipal-data-list/ipal-data-list.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material';
-import { IpalDataFormComponent } from './admin/ipal-data-form/ipal-data-form.component';
+import { IpalDataFormComponent, DialogMessageAdminDialog } from './admin/ipal-data-form/ipal-data-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
@@ -49,7 +49,8 @@ const appRoutes: Routes = [
   { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard],
     children: [
       { path: 'ipalList', component: IpalDataListComponent, canActivate: [AuthGuard]},
-      { path: 'ipalForm', component: IpalDataFormComponent, canActivate: [AuthGuard]}
+      { path: 'ipalForm', component: IpalDataFormComponent, canActivate: [AuthGuard]},
+      { path: 'ipalList/:idIpaldata', component: IpalDataFormComponent, canActivate: [AuthGuard]},
     ]
   }
 ]
@@ -68,13 +69,15 @@ export const routing = RouterModule.forRoot(appRoutes);
     ContentListComponent,
     DialogContentDialog,
     DialogContentAdminDialog,
+    DialogMessageAdminDialog,
     HomeAdminComponent,
     IpalDataListComponent,
     IpalDataFormComponent,
   ],
   entryComponents: [
     DialogContentDialog, 
-    DialogContentAdminDialog],
+    DialogContentAdminDialog,
+    DialogMessageAdminDialog],
   imports: [
     BrowserModule,
     MatToolbarModule,

@@ -168,5 +168,73 @@ module.exports = {
                 data: result
             });
         });
+    },
+    updateIpalData: function(req, res) {
+
+        var idIpalData = req.params.idIpalData;
+        var idCategory = req.body.idCategory;
+        var name = req.body.name;
+        var address = req.body.address;
+        var buildBy = req.body.buildBy;
+        var developmentYear = req.body.developmentYear;
+        var sourceOfFund = req.body.sourceOfFund;
+        var technology = req.body.technology;
+        var size = req.body.size;
+        var capacity = req.body.capacity;
+        var connectionNumber = req.body.connectionNumber;
+        var manager = req.body.manager;
+        var longitude = req.body.longitude;
+        var latitude = req.body.latitude;
+
+        var photo;
+        if(req.body.photo != null){
+
+            //validate if photo not changed
+            console.log(Array.isArray(req.body.photo));
+            if(req.body.photo.value != null){
+                if(Array.isArray(req.body.photo.value)){
+                    var photoBody = req.body.photo.value;
+    
+                    // Photo section
+                    var photoArr = [];
+                    for (let index = 0; index < photoBody.length; index++) {
+                        const element = photoBody[index];
+    
+                        //convert byte to image
+                        var base64Data = element.value;
+                        var dirrPath = config.root;
+                        var imageName = element.fileName;
+                        var imageLocation = dirrPath + imageName;
+                        var buff = new Buffer(base64Data, 'base64');
+    
+                        fs.writeFile(imageLocation, buff, (err) => {
+                            if (err) throw err;
+                            console.log('Image successfully uploaded to ' + imageLocation);
+                        });
+    
+                        photoArr.push(element.fileName);
+                    }
+                    var photo = photoArr.join(';');
+                }else{
+                    //set photo to old value
+                    photo = req.body.photo;
+                }
+            }else{
+                //set photo to old value
+                photo = req.body.photo;
+            }
+        }else{
+            photo = "";
+        }
+        
+
+        var sql = "UPDATE ipal_data SET idCategory=?, name=?, address=?, build_by=?, development_year=?, source_of_fund=?, technology=?, size=?, capacity=?, connection_number=?, manager=?, longitude=?, latitude=?, photo=? WHERE idIpalData=?";
+        dbConnection.query(sql, [ idCategory, name, address, buildBy, developmentYear, sourceOfFund, technology, size, capacity, connectionNumber, manager, longitude, latitude, photo, idIpalData ], function(err, result , fields){
+            if(err) throw err;
+            res.json({
+                status: '200',
+                data: result
+            });
+        });
     }
 }

@@ -6,7 +6,7 @@
       <p>
         <mat-form-field>
           <mat-select placeholder="Kategori Ipal" formControlName="idCategory" id="idCategory" name="idCategory" size="30">
-            <mat-option *ngFor="let category of ipalCategoryList" value="{{category.idCategory}}">{{category.category}}</mat-option>
+            <mat-option *ngFor="let category of ipalCategoryList" [value]="category.idCategory" value="{{category.idCategory}}">{{category.category}}</mat-option>
           </mat-select>
         </mat-form-field>
       </p>
@@ -28,8 +28,13 @@
       <p>
         <mat-form-field>
           <mat-select placeholder="Tahun Pembangunan" formControlName="developmentYear" id="developmentYear" name="developmentYear" size="30">
-            <mat-option value="2018">2018</mat-option>
-            <mat-option value="2019">2019</mat-option>
+            <mat-option [value]="2017" value="2017">2017</mat-option>
+            <mat-option [value]="2018" value="2018">2018</mat-option>
+            <mat-option [value]="2019" value="2019">2019</mat-option>
+            <mat-option [value]="2020" value="2020">2020</mat-option>
+            <mat-option [value]="2021" value="2021">2021</mat-option>
+            <mat-option [value]="2022" value="2022">2022</mat-option>
+            <mat-option [value]="2023" value="2023">2023</mat-option>
           </mat-select>
         </mat-form-field>
       </p>
