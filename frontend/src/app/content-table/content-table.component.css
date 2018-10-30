@@ -68,3 +68,17 @@ mat-dialog-content{
   width: 900px;
   height: 800px;;
 }
+
+div.polaroid {
+  width: 80%;
+  height: 50%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img {width: 50%; height: 50%;}
+
+div.container {
+  text-align: center;
+  padding: 10px 20px;
+}

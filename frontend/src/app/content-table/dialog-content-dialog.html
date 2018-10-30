@@ -1,12 +1,34 @@
-<h2 mat-dialog-title>Maps Detail : {{data.name}}</h2>
+<!-- <h2 mat-dialog-title>Maps Detail : {{data.name}}</h2>
 <mat-dialog-content class="mat-typography">
-    <!-- <agm-map [latitude]="data.latitude" [longitude]="data.longitude">
-      <agm-marker [latitude]="data.latitude" [longitude]="data.longitude"></agm-marker>
-    </agm-map> -->
   <h3>{{data.ksmName}}</h3>
   <p>{{data.address}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Close</button>
-  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+</mat-dialog-actions> -->
+
+<h2 mat-dialog-title>Maps Detail : {{data.name}}</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>{{ (data.name !== null) ? data.name : "-"}}, Pengelola : {{ (data.manager !== null) ? data.manager : "-"}}</h3>
+  <p>Kategori : {{ (data.category !== null) ? data.category : "-"}}</p>
+  <p>{{ (data.address !== null) ? data.address : "-"}}</p>
+  <p>
+    Dibangun oleh : {{ (data.build_by !== null) ? data.build_by : "-"}}, 
+    <b>{{ (data.development_year !== null) ? data.development_year : "-"}}</b>
+  </p>
+  <p>Sumber dana : {{ (data.source_of_fund !== null) ? data.source_of_fund : "-"}}</p>
+  <br />
+  <p>Teknologi : {{ (data.technology !== null) ? data.technology : "-"}}</p>
+  <p>
+    Ukuran / Kapasitas : {{ (data.size !== null) ? data.size : "-"}} / {{ (data.capacity !== null) ? data.capacity : "-"}}
+  </p>
+  <p>Jumlah sambungan : {{ (data.connection_number !== null) ? data.connection_number : "-"}}</p>
+
+  <agm-map [zoom]="17" [latitude]="data.latitude" [longitude]="data.longitude">
+    <agm-marker [latitude]="data.latitude" [longitude]="data.longitude"></agm-marker>
+  </agm-map>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
