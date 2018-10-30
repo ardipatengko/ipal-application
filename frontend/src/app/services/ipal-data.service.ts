@@ -43,7 +43,7 @@ export class IpalDataService {
 
   deleteIpalData(idIpaldata): Observable<any>{
     // return this.http.delete(Utils.getConnectionUrl().concat("ipalData/").concat(idIpaldata));
-    return this.httpNew.delete(Utils.getConnectionUrl().concat("ipalData/").concat(idIpaldata), httpOptions);
+    return this.httpNew.post(Utils.getConnectionUrl().concat("ipalData/delete/").concat(idIpaldata), httpOptions);
   }
 
   updateIpalData(idIpaldata, ipalData): Observable<any>{

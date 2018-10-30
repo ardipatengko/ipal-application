@@ -27,7 +27,7 @@ import { ContentListComponent } from './content-list/content-list.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { AuthGuard } from './guard/auth.guard';
-import { IpalDataListComponent, DialogContentAdminDialog } from './admin/ipal-data-list/ipal-data-list.component';
+import { IpalDataListComponent, DialogContentAdminDialog, DialogconfirmationAdminDialog } from './admin/ipal-data-list/ipal-data-list.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material';
 import { IpalDataFormComponent, DialogMessageAdminDialog } from './admin/ipal-data-form/ipal-data-form.component';
@@ -70,6 +70,7 @@ export const routing = RouterModule.forRoot(appRoutes);
     DialogContentDialog,
     DialogContentAdminDialog,
     DialogMessageAdminDialog,
+    DialogconfirmationAdminDialog,
     HomeAdminComponent,
     IpalDataListComponent,
     IpalDataFormComponent,
@@ -77,7 +78,8 @@ export const routing = RouterModule.forRoot(appRoutes);
   entryComponents: [
     DialogContentDialog, 
     DialogContentAdminDialog,
-    DialogMessageAdminDialog],
+    DialogMessageAdminDialog,
+    DialogconfirmationAdminDialog],
   imports: [
     BrowserModule,
     MatToolbarModule,

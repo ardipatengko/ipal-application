@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Konfirmasi : {{data.name}}</h1>
+<div mat-dialog-content>
+  Apakah yakin akan menghapus data ?
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Tidak</button>
+  <button mat-button [mat-dialog-close]="isDelete" cdkFocusInitial>Ya</button>
+</div>

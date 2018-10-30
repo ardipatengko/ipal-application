@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IpalCategoryService } from '../../services/ipal-category.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-ipal-data-list',
@@ -42,12 +42,20 @@ export class IpalDataListComponent implements OnInit {
   }
 
   delete(ipalData){
-    console.log(ipalData);
-    this.ipalDataService.deleteIpalData(ipalData.idIpalData).subscribe(
-      ipalData => {
-        this.getIpalDataList();
+    const dialogRef = this.dialog.open(DialogconfirmationAdminDialog, {
+      data: ipalData
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log(result);
+        this.ipalDataService.deleteIpalData(ipalData.idIpalData).subscribe(
+          ipalData => {
+            this.getIpalDataList();
+          }
+        );
       }
-    );
+    });
   }
 
   viewDetail(ipalData){
@@ -74,5 +82,30 @@ export class DialogContentAdminDialog implements OnInit{
 
   ngOnInit(){
     console.log(this.data);
+  }
+}
+
+@Component({
+  selector: 'dialog-confirmation-admin-dialog',
+  templateUrl: './dialog-confirmation-admin-dialog.html',
+  styleUrls: ['./ipal-data-list.component.css']
+})
+export class DialogconfirmationAdminDialog implements OnInit{
+
+  private isDelete = true;
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogconfirmationAdminDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private ipalDataService: IpalDataService
+  ){}
+
+  ngOnInit(){
+    console.log(this.data);
+  }
+
+  onNoClick(): void {
+    this.isDelete = false;
+    this.dialogRef.close();
   }
 }
