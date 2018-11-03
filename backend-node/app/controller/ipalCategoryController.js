@@ -16,7 +16,7 @@ module.exports = {
         // // to the API (e.g. in case you use sessions)
         // res.setHeader('Access-Control-Allow-Credentials', true);
 
-        var sql = "SELECT * FROM ipal_category ORDER BY category ASC";
+        var sql = "SELECT * FROM ipal_category ORDER BY idCategory ASC";
         dbConnection.query(sql, function(err, result, fields){
             if(err) throw err;
             res.json({
